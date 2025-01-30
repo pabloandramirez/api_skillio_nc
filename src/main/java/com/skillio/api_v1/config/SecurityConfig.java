@@ -33,7 +33,6 @@ public class SecurityConfig {
     @Autowired
     private JwtUtils jwtUtils;
 
-    @Autowired
     public SecurityConfig(JwtAuthorizationFilter jwtAuthorizationFilter) {
         this.jwtAuthorizationFilter = jwtAuthorizationFilter;
     }
@@ -41,8 +40,6 @@ public class SecurityConfig {
     @Autowired
     CustomUserDetailsService userDetailsService;
 
-    @Autowired
-    JwtAuthorizationFilter authorizationFilter;
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -74,7 +71,7 @@ public class SecurityConfig {
                 )
 ////                .httpBasic()
                 .addFilter(jwtAuthenticationFilter)
-                .addFilterBefore(authorizationFilter, UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
 

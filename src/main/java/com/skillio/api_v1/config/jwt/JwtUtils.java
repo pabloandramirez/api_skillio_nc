@@ -18,11 +18,18 @@ import java.util.function.Function;
 @Slf4j
 public class JwtUtils {
 
-    @Value("${jwt.secret.key}")
-    private String secretKey;
-    @Value("${jwt.time.expiration}")
-    private String timeExpiration;
-    private Long resetPasswordTokenTimeExpiration = 600000L;
+    private final String secretKey;
+    private final String timeExpiration;
+    private final Long resetPasswordTokenTimeExpiration = 600000L;
+
+    public JwtUtils(@Value("${jwt.secret.key}") String secretKey,
+                    @Value("${jwt.time.expiration}") String timeExpiration) {
+        if (secretKey == null || timeExpiration == null) {
+            throw new IllegalStateException("JWT properties not configured properly");
+        }
+        this.secretKey = secretKey;
+        this.timeExpiration = timeExpiration;
+    }
 
     //Generar token de acceso
     public String generateAccessToken(String username, String role){
