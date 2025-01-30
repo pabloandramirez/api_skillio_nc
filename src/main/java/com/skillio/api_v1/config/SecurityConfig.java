@@ -29,8 +29,14 @@ import java.util.List;
 @EnableWebSecurity
 public class SecurityConfig {
 
+    private final JwtAuthorizationFilter jwtAuthorizationFilter;
     @Autowired
     private JwtUtils jwtUtils;
+
+    @Autowired
+    public SecurityConfig(JwtAuthorizationFilter jwtAuthorizationFilter) {
+        this.jwtAuthorizationFilter = jwtAuthorizationFilter;
+    }
 
     @Autowired
     CustomUserDetailsService userDetailsService;
