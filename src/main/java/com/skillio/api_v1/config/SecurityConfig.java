@@ -29,16 +29,19 @@ import java.util.List;
 @EnableWebSecurity
 public class SecurityConfig {
 
-    private final JwtAuthorizationFilter jwtAuthorizationFilter;
-    @Autowired
-    private JwtUtils jwtUtils;
+    private final JwtUtils jwtUtils;
 
-    public SecurityConfig(JwtAuthorizationFilter jwtAuthorizationFilter) {
+    private final CustomUserDetailsService userDetailsService;
+
+    private final JwtAuthorizationFilter jwtAuthorizationFilter;
+
+    public SecurityConfig(JwtUtils jwtUtils,
+                          CustomUserDetailsService userDetailsService,
+                          JwtAuthorizationFilter jwtAuthorizationFilter) {
+        this.jwtUtils = jwtUtils;
+        this.userDetailsService = userDetailsService;
         this.jwtAuthorizationFilter = jwtAuthorizationFilter;
     }
-
-    @Autowired
-    CustomUserDetailsService userDetailsService;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -71,7 +74,7 @@ public class SecurityConfig {
                 )
 ////                .httpBasic()
                 .addFilter(jwtAuthenticationFilter)
-                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
 

@@ -8,28 +8,20 @@ import io.jsonwebtoken.security.Keys;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.security.Key;
 import java.util.Date;
 import java.util.function.Function;
 
-@Service
+@Component
 @Slf4j
 public class JwtUtils {
 
-    private final String secretKey;
-    private final String timeExpiration;
-    private final Long resetPasswordTokenTimeExpiration = 600000L;
-
-    public JwtUtils(@Value("${jwt.secret.key}") String secretKey,
-                    @Value("${jwt.time.expiration}") String timeExpiration) {
-        if (secretKey == null || timeExpiration == null) {
-            throw new IllegalStateException("JWT properties not configured properly");
-        }
-        this.secretKey = secretKey;
-        this.timeExpiration = timeExpiration;
-    }
+    @Value("${jwt.secret.key}")
+    private String secretKey;
+    @Value("${jwt.time.expiration}")
+    private String timeExpiration;
+    private Long resetPasswordTokenTimeExpiration = 600000L;
 
     //Generar token de acceso
     public String generateAccessToken(String username, String role){

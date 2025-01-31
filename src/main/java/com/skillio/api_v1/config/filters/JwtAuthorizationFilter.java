@@ -1,6 +1,7 @@
 package com.skillio.api_v1.config.filters;
 
 import com.skillio.api_v1.config.jwt.JwtUtils;
+import com.skillio.api_v1.service.userDetails.CustomUserDetailsService;
 import com.skillio.api_v1.service.userDetails.UserDetailsServiceImpl;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -20,14 +21,12 @@ import java.io.IOException;
 public class JwtAuthorizationFilter extends OncePerRequestFilter {
 
     private final JwtUtils jwtUtils;
+    private final CustomUserDetailsService userDetailsService;
 
-    @Autowired
-    public JwtAuthorizationFilter(JwtUtils jwtUtils) {
+    public JwtAuthorizationFilter(JwtUtils jwtUtils, CustomUserDetailsService userDetailsService) {
         this.jwtUtils = jwtUtils;
+        this.userDetailsService = userDetailsService;
     }
-
-    @Autowired
-    private UserDetailsServiceImpl userDetailsService;
 
     @Override
     protected void doFilterInternal(@NonNull HttpServletRequest request,
