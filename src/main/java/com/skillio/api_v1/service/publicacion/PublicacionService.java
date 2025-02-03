@@ -13,7 +13,7 @@ import java.util.UUID;
 public interface PublicacionService {
     List<PublicacionDTO> getPublicaciones();
 
-    /*List<PublicacionDTO> getPublicacionesPorPreferencias(List<String preferencias>);*/
+    List<PublicacionDTO> getPublicacionesPorPreferencias(List<String> preferencias);
 
     Optional<PublicacionDTO> getPublicacionPorId(UUID idPublicacion);
 

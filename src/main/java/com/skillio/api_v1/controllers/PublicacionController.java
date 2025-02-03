@@ -28,18 +28,18 @@ public class PublicacionController {
     private final PublicacionService publicacionService;
 
     @GetMapping("/")
-    @PreAuthorize("hasAnyRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'USUARIO')")
     public List<PublicacionDTO> getPublicaciones(){
         log.info("Muestra todas las publicaciones");
         return publicacionService.getPublicaciones();
     }
 
-    /*@GetMapping("/")
+    @GetMapping("/buscar")
     @PreAuthorize("hasAnyRole('ADMIN', 'USUARIO')")
     public List<PublicacionDTO> getPublicacionesPorPreferencias(@RequestParam List<String> preferencias){
         log.info("Muestra todas las publicaciones");
-        return publicacionService.getPublicaciones();
-    }*/
+        return publicacionService.getPublicacionesPorPreferencias(preferencias);
+    }
 
     @GetMapping("/{idPublicacion}")
     @PreAuthorize("hasAnyRole('ADMIN', 'USUARIO')")

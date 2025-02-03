@@ -35,14 +35,14 @@ public class PublicacionServiceImpl implements PublicacionService {
                 .collect(Collectors.toList());
     }
 
-    /*@Override
+    @Override
     public List<PublicacionDTO> getPublicacionesPorPreferencias(List<String> preferencias) {
         List<Publicacion> publicacionList = publicacionRepository.buscarPorPreferencias(preferencias);
         return publicacionList.parallelStream()
                 .map(publicacionMapper::publicacionToPublicacionDTO)
                 .sorted(Comparator.comparing(PublicacionDTO::getFechaPublicacion).reversed())
                 .collect(Collectors.toList());
-    }*/
+    }
 
     @Override
     public Optional<PublicacionDTO> getPublicacionPorId(UUID idPublicacion) {

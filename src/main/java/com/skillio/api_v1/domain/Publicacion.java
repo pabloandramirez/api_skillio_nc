@@ -41,6 +41,7 @@ public class Publicacion {
     @OneToMany(mappedBy = "publicacion")
     private List<Comentario> comentarios = new ArrayList<>();
 
+    @ElementCollection
     private List<String> palabrasClave = new ArrayList<>();
 
 }

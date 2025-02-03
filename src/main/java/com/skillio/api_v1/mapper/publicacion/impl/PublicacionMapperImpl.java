@@ -22,10 +22,9 @@ public class PublicacionMapperImpl implements PublicacionMapper {
     @Override
     public Publicacion publicacionDTOtoPublicacion(PublicacionDTO publicacionDTO) {
         Publicacion.PublicacionBuilder builder = Publicacion.builder()
-                .id(UUID.randomUUID())
                 .content(publicacionDTO.getContenido())
-                .fechaPublicacion(getLocalDate(publicacionDTO.getFechaPublicacion()))
-                .visibilidad(Visibilidad.valueOf(publicacionDTO.getVisibilidad()))
+                .fechaPublicacion(LocalDate.now())
+                .visibilidad(Visibilidad.valueOf(publicacionDTO.getVisibilidad().toUpperCase()))
                 .palabrasClave(publicacionDTO.getPalabrasClave());
 
         if(estudianteRepository.findById(UUID.fromString(publicacionDTO.getUsuarioId())).isPresent()){

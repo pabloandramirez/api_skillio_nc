@@ -22,7 +22,6 @@ public class AmistadMapperImpl implements AmistadMapper {
     @Override
     public Amistad amistadDTOtoAmistad(AmistadDTO amistadDTO) {
         Amistad.AmistadBuilder builder = Amistad.builder()
-                .id(UUID.randomUUID())
                 .fechaAmistad(LocalDate.now())
                 .estadoAmistad(EstadoAmistad.valueOf(amistadDTO.getEstadoAmistad()));
 

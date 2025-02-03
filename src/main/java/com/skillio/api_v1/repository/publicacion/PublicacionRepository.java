@@ -16,4 +16,6 @@ import java.util.UUID;
 public interface PublicacionRepository extends JpaRepository<Publicacion, UUID> {
 
 
+    @Query("SELECT p FROM Publicacion p JOIN p.palabrasClave pc WHERE pc IN :preferencias")
+    List<Publicacion> buscarPorPreferencias(@Param("preferencias") List<String> preferencias);
 }

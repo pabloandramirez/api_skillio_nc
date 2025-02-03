@@ -25,7 +25,6 @@ public class ComentarioMapperImpl implements ComentarioMapper {
     @Override
     public Comentario comentarioDTOtoComentario(ComentarioDTO comentarioDTO) {
         Comentario.ComentarioBuilder builder = Comentario.builder()
-                .id(UUID.randomUUID())
                 .comentarioTexto(comentarioDTO.getComentarioTexto())
                 .fechaComentario(getLocalDate(comentarioDTO.getFechaPublicacion()));
 

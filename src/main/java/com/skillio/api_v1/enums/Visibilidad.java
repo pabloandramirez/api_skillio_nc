@@ -1,9 +1,12 @@
 package com.skillio.api_v1.enums;
 
+import lombok.Getter;
+
+@Getter
 public enum Visibilidad {
-    PRIVADO("Privado"),
-    SOLO_AMIGOS("Solo Amigos"),
-    PUBLICO("Publico");
+    PRIVADO("PRIVADO"),
+    SOLO_AMIGOS("SOLO AMIGOS"),
+    PUBLICO("PUBLICO");
 
     private final String visibilidad;
 
