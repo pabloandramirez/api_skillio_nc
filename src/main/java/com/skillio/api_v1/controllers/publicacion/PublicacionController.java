@@ -1,4 +1,4 @@
-package com.skillio.api_v1.controllers;
+package com.skillio.api_v1.controllers.publicacion;
 
 import com.skillio.api_v1.domain.Publicacion;
 import com.skillio.api_v1.exceptions.NotFoundException;

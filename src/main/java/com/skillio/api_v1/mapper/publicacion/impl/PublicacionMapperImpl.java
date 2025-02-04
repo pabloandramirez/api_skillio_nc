@@ -42,7 +42,12 @@ public class PublicacionMapperImpl implements PublicacionMapper {
                 .contenido(publicacion.getContent())
                 .fechaPublicacion(getLocalDate(publicacion.getFechaPublicacion()))
                 .visibilidad(publicacion.getVisibilidad().toString())
-                .palabrasClave(publicacion.getPalabrasClave());
+                .palabrasClave(publicacion.getPalabrasClave())
+                .nombreCompletoAutor(publicacion.getEstudiante().getNombreCompleto());
+
+        if (publicacion.getEstudiante().getImagenPerfilUrl()!=null && !publicacion.getEstudiante().getImagenPerfilUrl().isBlank()){
+            builder.fotoUrlAutor(publicacion.getEstudiante().getImagenPerfilUrl());
+        }
 
         return builder.build();
     }

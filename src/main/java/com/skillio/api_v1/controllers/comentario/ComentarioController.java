@@ -1,4 +1,4 @@
-package com.skillio.api_v1.controllers;
+package com.skillio.api_v1.controllers.comentario;
 
 import com.skillio.api_v1.domain.Comentario;
 import com.skillio.api_v1.exceptions.NotFoundException;

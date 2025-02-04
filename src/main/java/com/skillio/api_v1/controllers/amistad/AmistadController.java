@@ -1,4 +1,4 @@
-package com.skillio.api_v1.controllers;
+package com.skillio.api_v1.controllers.amistad;
 
 import com.skillio.api_v1.domain.Amistad;
 import com.skillio.api_v1.exceptions.NotFoundException;

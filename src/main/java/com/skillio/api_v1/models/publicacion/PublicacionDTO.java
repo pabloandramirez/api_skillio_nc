@@ -16,4 +16,6 @@ public class PublicacionDTO {
     private String fechaPublicacion;
     private String visibilidad;
     private List<String> palabrasClave;
+    private String nombreCompletoAutor;
+    private String fotoUrlAutor;
 }
