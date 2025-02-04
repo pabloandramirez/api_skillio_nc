@@ -1,11 +1,8 @@
 package com.skillio.api_v1.controllers;
 
-import com.skillio.api_v1.domain.Estudiante;
 import com.skillio.api_v1.domain.Publicacion;
 import com.skillio.api_v1.exceptions.NotFoundException;
-import com.skillio.api_v1.models.estudiante.EstudianteDTO;
 import com.skillio.api_v1.models.publicacion.PublicacionDTO;
-import com.skillio.api_v1.service.estudiante.EstudianteService;
 import com.skillio.api_v1.service.publicacion.PublicacionService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -29,7 +26,14 @@ public class PublicacionController {
 
     @GetMapping("/")
     @PreAuthorize("hasAnyRole('ADMIN', 'USUARIO')")
-    public List<PublicacionDTO> getPublicaciones(){
+    public List<PublicacionDTO> getPublicacionesParaUsuario(){
+        log.info("Muestra todas las publicaciones");
+        return publicacionService.getPublicacionesParaUsuario();
+    }
+
+    @GetMapping("/todo")
+    @PreAuthorize("hasRole('ADMIN')")
+    public List<PublicacionDTO> getPublicacionesParaAdmin(){
         log.info("Muestra todas las publicaciones");
         return publicacionService.getPublicaciones();
     }

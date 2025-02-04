@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import java.security.Key;
 import java.util.Date;
+import java.util.List;
 import java.util.function.Function;
 
 @Component
@@ -27,7 +28,7 @@ public class JwtUtils {
     public String generateAccessToken(String username, String role){
         return Jwts.builder()
                 .setSubject(username)
-                .claim("role", role)
+                .claim("role",  role)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + Long.parseLong(timeExpiration)))
                 .signWith(getSignatureKey(), SignatureAlgorithm.HS256)
@@ -90,11 +91,26 @@ public class JwtUtils {
 
     //Obtener role
     public String getRoleFromToken(String token) {
-        Claims claims = Jwts.parserBuilder().
-                setSigningKey(getSignatureKey()).
-                build().
-                parseClaimsJws(token).
-                getBody();
-        return (String) claims.get("role");
+        Claims claims = Jwts.parserBuilder()
+                .setSigningKey(getSignatureKey())
+                .build()
+                .parseClaimsJws(token)
+                .getBody();
+
+        Object roleObject = claims.get("role");
+
+        if (roleObject instanceof String) {
+            String roleStr = (String) roleObject;
+            // Limpia los corchetes y espacios en blanco
+            return roleStr.replace("[", "").replace("]", "").trim();
+        } else if (roleObject instanceof List) {
+            List<?> roles = (List<?>) roleObject;
+            if (!roles.isEmpty()) {
+                String roleStr = roles.get(0).toString();
+                return roleStr.replace("[", "").replace("]", "").trim();
+            }
+        }
+
+        return null;
     }
 }

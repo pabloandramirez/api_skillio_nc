@@ -1,13 +1,10 @@
 package com.skillio.api_v1.mapper.comentario.impl;
 
 import com.skillio.api_v1.domain.Comentario;
-import com.skillio.api_v1.domain.Publicacion;
 import com.skillio.api_v1.mapper.comentario.ComentarioMapper;
 import com.skillio.api_v1.models.comentario.ComentarioDTO;
-import com.skillio.api_v1.repository.comentario.ComentarioRepository;
 import com.skillio.api_v1.repository.estudiante.EstudianteRepository;
 import com.skillio.api_v1.repository.publicacion.PublicacionRepository;
-import com.skillio.api_v1.repository.usuario.UsuarioRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 

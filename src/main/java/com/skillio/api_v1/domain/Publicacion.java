@@ -25,7 +25,7 @@ public class Publicacion {
     @Column(length = 50, columnDefinition = "varchar(50)", updatable = false, nullable = false)
     private UUID id;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "estudiante_id", referencedColumnName = "id")
     private Estudiante estudiante;
 

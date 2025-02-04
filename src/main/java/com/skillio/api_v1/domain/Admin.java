@@ -2,8 +2,6 @@ package com.skillio.api_v1.domain;
 
 import com.skillio.api_v1.enums.Role;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Transient;
-import jakarta.persistence.Version;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 

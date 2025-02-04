@@ -5,7 +5,6 @@ import com.skillio.api_v1.enums.Visibilidad;
 import com.skillio.api_v1.mapper.publicacion.PublicacionMapper;
 import com.skillio.api_v1.models.publicacion.PublicacionDTO;
 import com.skillio.api_v1.repository.estudiante.EstudianteRepository;
-import com.skillio.api_v1.repository.usuario.UsuarioRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 

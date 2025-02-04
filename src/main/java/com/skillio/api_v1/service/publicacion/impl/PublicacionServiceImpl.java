@@ -36,6 +36,16 @@ public class PublicacionServiceImpl implements PublicacionService {
     }
 
     @Override
+    public List<PublicacionDTO> getPublicacionesParaUsuario() {
+        List<Publicacion> publicacionList = publicacionRepository.findAll();
+        return publicacionList.parallelStream()
+                .filter(publicacion -> publicacion.getVisibilidad()==Visibilidad.PUBLICO)
+                .map(publicacionMapper::publicacionToPublicacionDTO)
+                .sorted(Comparator.comparing(PublicacionDTO::getFechaPublicacion).reversed())
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public List<PublicacionDTO> getPublicacionesPorPreferencias(List<String> preferencias) {
         List<Publicacion> publicacionList = publicacionRepository.buscarPorPreferencias(preferencias);
         return publicacionList.parallelStream()

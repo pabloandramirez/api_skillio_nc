@@ -1,8 +1,6 @@
 package com.skillio.api_v1.service.amistad;
 
-import com.skillio.api_v1.domain.Admin;
 import com.skillio.api_v1.domain.Amistad;
-import com.skillio.api_v1.models.admin.AdminDTO;
 import com.skillio.api_v1.models.amistad.AmistadDTO;
 import org.springframework.web.bind.annotation.RequestBody;
 

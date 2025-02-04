@@ -5,7 +5,6 @@ import com.skillio.api_v1.enums.EstadoAmistad;
 import com.skillio.api_v1.mapper.amistad.AmistadMapper;
 import com.skillio.api_v1.models.amistad.AmistadDTO;
 import com.skillio.api_v1.repository.estudiante.EstudianteRepository;
-import com.skillio.api_v1.repository.usuario.UsuarioRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
