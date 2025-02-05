@@ -13,7 +13,7 @@ public class WebConfig implements WebMvcConfigurer {
         registry
                 .addMapping("/**")
                 .allowedOriginPatterns("https://skillio.netlify.app/") // Permitir solicitudes desde ddterminado origen
-                .allowedOriginPatterns("http://test-skillio.netlify.app/") // Permitir solicitudes desde ddterminado origen
+                .allowedOriginPatterns("https://test-skillio.netlify.app/") // Permitir solicitudes desde ddterminado origen
                 .allowedOriginPatterns("http://localhost:4200/") // Permitir solicitudes desde ddterminado origen
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // Permitir estos métodos HTTP
                 .allowedHeaders("Content-Type") // Permitir estos encabezados en las solicitudes
