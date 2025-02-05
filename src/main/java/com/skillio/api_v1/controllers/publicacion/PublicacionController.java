@@ -45,6 +45,14 @@ public class PublicacionController {
         return publicacionService.getPublicacionesPorPreferencias(preferencias);
     }
 
+    @GetMapping("/porEstudiante/{idEstudiante}")
+    @PreAuthorize("hasAnyRole('ADMIN', 'USUARIO')")
+    public List<PublicacionDTO> getPublicacionEsPorIdEstudiante(@PathVariable(name = "idEstudiante") UUID idEstudiante)
+            throws NotFoundException {
+        log.info("Buscar publicacion por Id");
+        return publicacionService.getPublicacionesPorIdEstudiante(idEstudiante);
+    }
+
     @GetMapping("/{idPublicacion}")
     @PreAuthorize("hasAnyRole('ADMIN', 'USUARIO')")
     public PublicacionDTO getPublicacionPorId(@PathVariable(name = "idPublicacion") UUID idPublicacion)

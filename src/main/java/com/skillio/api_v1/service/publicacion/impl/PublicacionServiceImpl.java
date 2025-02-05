@@ -55,6 +55,15 @@ public class PublicacionServiceImpl implements PublicacionService {
     }
 
     @Override
+    public List<PublicacionDTO> getPublicacionesPorIdEstudiante(UUID idEstudiante) {
+        List<Publicacion> publicacionList = publicacionRepository.buscarPorIdEstudiante(idEstudiante);
+        return publicacionList.parallelStream()
+                .map(publicacionMapper::publicacionToPublicacionDTO)
+                .sorted(Comparator.comparing(PublicacionDTO::getFechaPublicacion).reversed())
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public Optional<PublicacionDTO> getPublicacionPorId(UUID idPublicacion) {
         Optional<Publicacion> optionalPublicacion = publicacionRepository.findById(idPublicacion);
         return optionalPublicacion.map(publicacionMapper::publicacionToPublicacionDTO);

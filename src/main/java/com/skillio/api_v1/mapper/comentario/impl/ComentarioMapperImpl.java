@@ -23,7 +23,7 @@ public class ComentarioMapperImpl implements ComentarioMapper {
     public Comentario comentarioDTOtoComentario(ComentarioDTO comentarioDTO) {
         Comentario.ComentarioBuilder builder = Comentario.builder()
                 .comentarioTexto(comentarioDTO.getComentarioTexto())
-                .fechaComentario(getLocalDate(comentarioDTO.getFechaPublicacion()));
+                .fechaComentario(LocalDate.now());
 
         if (publicacionRepository.findById(UUID.fromString(comentarioDTO.getPublicacionId())).isPresent()){
             builder.publicacion(publicacionRepository.findById(UUID.fromString(comentarioDTO.getPublicacionId())).get());

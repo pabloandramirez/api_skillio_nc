@@ -50,4 +50,12 @@ public class Estudiante extends  Usuario{
     @Builder.Default
     private Role role = Role.USUARIO;
 
+    @Override
+    public String toString() {
+        return "Estudiante{" +
+                ", nombreCompleto='" + getNombreCompleto() + '\'' +
+                ", imagenPerfilUrl='" + imagenPerfilUrl + '\'' +
+                ", educacion='" + educacion + '\'' +
+                '}';
+    }
 }

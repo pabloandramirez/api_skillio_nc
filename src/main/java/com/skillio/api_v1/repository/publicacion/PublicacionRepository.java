@@ -7,6 +7,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Repository
@@ -15,4 +16,7 @@ public interface PublicacionRepository extends JpaRepository<Publicacion, UUID> 
 
     @Query("SELECT p FROM Publicacion p JOIN p.palabrasClave pc WHERE pc IN :preferencias")
     List<Publicacion> buscarPorPreferencias(@Param("preferencias") List<String> preferencias);
+
+    @Query("SELECT p FROM Publicacion p WHERE p.estudiante.id = :idEstudiante")
+    List<Publicacion> buscarPorIdEstudiante(UUID idEstudiante);
 }

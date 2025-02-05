@@ -15,6 +15,8 @@ public interface PublicacionService {
 
     List<PublicacionDTO> getPublicacionesPorPreferencias(List<String> preferencias);
 
+    List<PublicacionDTO> getPublicacionesPorIdEstudiante(UUID idEstudiante);
+
     Optional<PublicacionDTO> getPublicacionPorId(UUID idPublicacion);
 
     Publicacion crearPublicacion(@RequestBody PublicacionDTO publicacionDTO);

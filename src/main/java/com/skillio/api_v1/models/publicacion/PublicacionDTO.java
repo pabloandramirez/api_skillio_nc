@@ -18,4 +18,5 @@ public class PublicacionDTO {
     private List<String> palabrasClave;
     private String nombreCompletoAutor;
     private String fotoUrlAutor;
+    private List<String> listaComentarios;
 }

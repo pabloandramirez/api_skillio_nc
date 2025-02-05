@@ -1,5 +1,6 @@
 package com.skillio.api_v1.mapper.publicacion.impl;
 
+import com.skillio.api_v1.domain.Comentario;
 import com.skillio.api_v1.domain.Publicacion;
 import com.skillio.api_v1.enums.Visibilidad;
 import com.skillio.api_v1.mapper.publicacion.PublicacionMapper;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Component
 @AllArgsConstructor
@@ -47,6 +49,10 @@ public class PublicacionMapperImpl implements PublicacionMapper {
 
         if (publicacion.getEstudiante().getImagenPerfilUrl()!=null && !publicacion.getEstudiante().getImagenPerfilUrl().isBlank()){
             builder.fotoUrlAutor(publicacion.getEstudiante().getImagenPerfilUrl());
+        }
+
+        if(publicacion.getComentarios()!= null && !publicacion.getComentarios().isEmpty()){
+            builder.listaComentarios(publicacion.getComentarios().stream().map(Comentario::toString).collect(Collectors.toList()));
         }
 
         return builder.build();
