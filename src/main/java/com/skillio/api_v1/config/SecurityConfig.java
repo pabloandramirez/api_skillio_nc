@@ -21,6 +21,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
 
 import java.util.List;
 
@@ -35,12 +36,16 @@ public class SecurityConfig {
 
     private final JwtAuthorizationFilter jwtAuthorizationFilter;
 
+    private final CorsConfigurationSource corsConfigurationSource;
+
     public SecurityConfig(JwtUtils jwtUtils,
                           CustomUserDetailsService userDetailsService,
-                          JwtAuthorizationFilter jwtAuthorizationFilter) {
+                          JwtAuthorizationFilter jwtAuthorizationFilter,
+                          CorsConfigurationSource corsConfigurationSource) {
         this.jwtUtils = jwtUtils;
         this.userDetailsService = userDetailsService;
         this.jwtAuthorizationFilter = jwtAuthorizationFilter;
+        this.corsConfigurationSource = corsConfigurationSource;
     }
 
     @Bean
@@ -56,6 +61,7 @@ public class SecurityConfig {
         jwtAuthenticationFilter.setFilterProcessesUrl("/login");
 
         return httpSecurity
+                .cors(cors -> cors.configurationSource(corsConfigurationSource))
                 .authorizeHttpRequests((auth) -> auth
                         .requestMatchers(HttpMethod.POST, "/estudiante/nuevoEstudiante").permitAll()
                         .anyRequest().authenticated()
