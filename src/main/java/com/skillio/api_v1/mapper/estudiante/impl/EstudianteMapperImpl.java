@@ -22,14 +22,26 @@ public class EstudianteMapperImpl implements EstudianteMapper {
                 .email(estudianteDTO.getEmail())
                 .password(passwordEncoder.encode(estudianteDTO.getPassword()))
                 .telefono(estudianteDTO.getTelefono())
-                .fechaNacimiento(getLocalDate(estudianteDTO.getFechaNacimiento()))
-                .fechaRegistro(LocalDate.now())
-                .institucion(estudianteDTO.getInstitucion())
-                .educacion(estudianteDTO.getEducacion())
-                .preferencias(estudianteDTO.getPreferencias());
+                .fechaRegistro(LocalDate.now());
 
         if(estudianteDTO.getImagenPerfilUrl() != null && !estudianteDTO.getImagenPerfilUrl().isBlank()){
             builder.imagenPerfilUrl(estudianteDTO.getImagenPerfilUrl());
+        }
+
+        if(estudianteDTO.getFechaNacimiento()!=null && !estudianteDTO.getFechaNacimiento().isBlank()){
+            builder.fechaNacimiento(getLocalDate(estudianteDTO.getFechaNacimiento()));
+        }
+
+        if(estudianteDTO.getFechaNacimiento()!= null && !estudianteDTO.getFechaNacimiento().isBlank()){
+            builder.institucion(estudianteDTO.getInstitucion());
+        }
+
+        if (estudianteDTO.getEducacion()!=null && !estudianteDTO.getEducacion().isBlank()){
+            builder.educacion(estudianteDTO.getEducacion());
+        }
+
+        if (estudianteDTO.getPreferencias()!=null && !estudianteDTO.getPreferencias().isEmpty()){
+            builder.preferencias(estudianteDTO.getPreferencias());
         }
 
         return builder.build();
