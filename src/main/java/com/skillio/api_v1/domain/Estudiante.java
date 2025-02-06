@@ -25,6 +25,9 @@ public class Estudiante extends  Usuario{
     private LocalDate fechaRegistro;
 
     @Column(length = 500, columnDefinition = "varchar(500)", updatable = true, nullable = true)
+    private String biografia;
+
+    @Column(length = 500, columnDefinition = "varchar(500)", updatable = true, nullable = true)
     private String imagenPerfilUrl;
 
     @OneToMany(mappedBy = "usuario1", cascade = CascadeType.ALL, orphanRemoval = true)

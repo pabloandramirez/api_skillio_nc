@@ -15,6 +15,7 @@ public class EstudianteDTO {
     private String email;
     private String password;
     private String telefono;
+    private String biografia;
     private String imagenPerfilUrl;
     private String fechaNacimiento;
     private String fechaRegistro;

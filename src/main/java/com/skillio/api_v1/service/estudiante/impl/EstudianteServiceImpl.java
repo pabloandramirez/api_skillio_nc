@@ -77,6 +77,10 @@ public class EstudianteServiceImpl implements EstudianteService {
             estudiante.setPassword(passwordEncoder.encode(estudianteActualizado.getPassword()));
         }
 
+        if(estudianteActualizado.getBiografia()!=null && !estudianteActualizado.getBiografia().isBlank()){
+            estudiante.setBiografia(estudianteActualizado.getBiografia());
+        }
+
         if(estudianteActualizado.getImagenPerfilUrl() != null && !estudianteActualizado.getImagenPerfilUrl().isBlank()){
             estudiante.setImagenPerfilUrl(estudianteActualizado.getImagenPerfilUrl());
         }
