@@ -16,11 +16,18 @@ public class WebConfig implements WebMvcConfigurer {
                         "https://skillio.netlify.app",
                         "https://test-skillio.netlify.app",
                         "https://localhost:4200"
-                ) // Se pasan todos los orígenes en una sola llamada
-                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // Permitir estos métodos HTTP
-                .allowedHeaders("Content-Type") // Permitir estos encabezados en las solicitudes
-                .allowCredentials(true) // Permitir el envío de credenciales (cookies, tokens de autenticación, etc.)
-                .maxAge(3600); // Tiempo máximo que los resultados preflight serán cacheados
+                )
+                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                .allowedHeaders(
+                        "Authorization", 
+                        "Content-Type",
+                        "Accept",
+                        "Origin",
+                        "X-Requested-With"
+                )
+                .exposedHeaders("Authorization")  // Permite que el cliente lea el header Authorization
+                .allowCredentials(true)
+                .maxAge(3600);
     }
 
 }

@@ -22,14 +22,14 @@ public class AmistadMapperImpl implements AmistadMapper {
     public Amistad amistadDTOtoAmistad(AmistadDTO amistadDTO) {
         Amistad.AmistadBuilder builder = Amistad.builder()
                 .fechaAmistad(LocalDate.now())
-                .estadoAmistad(EstadoAmistad.valueOf(amistadDTO.getEstadoAmistad()));
+                .estadoAmistad(EstadoAmistad.PENDIENTE);
 
         if (estudianteRepository.findById(UUID.fromString(amistadDTO.getUsuarioId1())).isPresent()){
             builder.usuario1(estudianteRepository.findById(UUID.fromString(amistadDTO.getUsuarioId1())).get());
         }
 
         if (estudianteRepository.findById(UUID.fromString(amistadDTO.getUsuarioId2())).isPresent()){
-            builder.usuario1(estudianteRepository.findById(UUID.fromString(amistadDTO.getUsuarioId2())).get());
+            builder.usuario2(estudianteRepository.findById(UUID.fromString(amistadDTO.getUsuarioId2())).get());
         }
 
 

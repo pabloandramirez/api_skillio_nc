@@ -58,6 +58,7 @@ public class PublicacionServiceImpl implements PublicacionService {
     public List<PublicacionDTO> getPublicacionesPorIdEstudiante(UUID idEstudiante) {
         List<Publicacion> publicacionList = publicacionRepository.buscarPorIdEstudiante(idEstudiante);
         return publicacionList.parallelStream()
+                .filter(publicacion -> publicacion.getVisibilidad()==Visibilidad.PUBLICO)
                 .map(publicacionMapper::publicacionToPublicacionDTO)
                 .sorted(Comparator.comparing(PublicacionDTO::getFechaPublicacion).reversed())
                 .collect(Collectors.toList());
