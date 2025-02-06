@@ -15,7 +15,7 @@ public class WebConfig implements WebMvcConfigurer {
                 .allowedOriginPatterns(
                         "https://skillio.netlify.app",
                         "https://test-skillio.netlify.app",
-                        "http://localhost:4200"
+                        "https://localhost:4200"
                 ) // Se pasan todos los orígenes en una sola llamada
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // Permitir estos métodos HTTP
                 .allowedHeaders("Content-Type") // Permitir estos encabezados en las solicitudes
