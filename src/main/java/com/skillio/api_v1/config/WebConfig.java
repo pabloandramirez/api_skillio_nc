@@ -12,9 +12,11 @@ public class WebConfig implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         registry
                 .addMapping("/**")
-                .allowedOriginPatterns("https://skillio.netlify.app/") // Permitir solicitudes desde ddterminado origen
-                .allowedOriginPatterns("https://test-skillio.netlify.app/") // Permitir solicitudes desde ddterminado origen
-                .allowedOriginPatterns("http://localhost:4200/") // Permitir solicitudes desde ddterminado origen
+                .allowedOriginPatterns(
+                        "https://skillio.netlify.app",
+                        "https://test-skillio.netlify.app",
+                        "http://localhost:4200"
+                ) // Se pasan todos los orígenes en una sola llamada
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // Permitir estos métodos HTTP
                 .allowedHeaders("Content-Type") // Permitir estos encabezados en las solicitudes
                 .allowCredentials(true) // Permitir el envío de credenciales (cookies, tokens de autenticación, etc.)
