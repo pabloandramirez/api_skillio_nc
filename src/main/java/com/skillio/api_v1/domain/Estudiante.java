@@ -18,7 +18,7 @@ import java.util.List;
 public class Estudiante extends  Usuario{
 
     @Column(length = 15, columnDefinition = "varchar(15)", nullable = true)
-    private Long telefono;
+    private String telefono;
 
     private LocalDate fechaNacimiento;
 

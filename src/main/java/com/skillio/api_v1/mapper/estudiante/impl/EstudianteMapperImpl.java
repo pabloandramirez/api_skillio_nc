@@ -21,7 +21,7 @@ public class EstudianteMapperImpl implements EstudianteMapper {
                 .nombreCompleto(estudianteDTO.getNombreCompleto())
                 .email(estudianteDTO.getEmail())
                 .password(passwordEncoder.encode(estudianteDTO.getPassword()))
-                .telefono(Long.valueOf(estudianteDTO.getTelefono()))
+                .telefono(estudianteDTO.getTelefono())
                 .fechaNacimiento(getLocalDate(estudianteDTO.getFechaNacimiento()))
                 .fechaRegistro(LocalDate.now())
                 .institucion(estudianteDTO.getInstitucion())
