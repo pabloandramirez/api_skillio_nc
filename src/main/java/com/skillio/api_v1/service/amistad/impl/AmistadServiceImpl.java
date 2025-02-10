@@ -79,7 +79,7 @@ public class AmistadServiceImpl implements AmistadService {
         }
 
         if (amistadActualizada.getEstadoAmistad() != null && !amistadActualizada.getEstadoAmistad().isBlank()){
-            amistad.setEstadoAmistad(EstadoAmistad.valueOf(amistadActualizada.getEstadoAmistad()));
+            amistad.setEstadoAmistad(EstadoAmistad.valueOf(amistadActualizada.getEstadoAmistad().toUpperCase()));
         }
 
     }

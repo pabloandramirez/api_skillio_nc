@@ -4,7 +4,7 @@ import lombok.Getter;
 
 @Getter
 public enum EstadoAmistad {
-    ACEPTADO("ACEPTADA"),
+    ACEPTADA("ACEPTADA"),
     PENDIENTE("PENDIENTE"),
     RECHAZADA("RECHAZADA"),
     BLOQUEADA("BLOQUEADA");

@@ -26,4 +26,6 @@ public class EstudianteDTO {
     private List<String> preferencias;
     private List<String> habilidades;
     private String role;
+    private List<String> amistadesEnviadas;
+    private List<String> amistadesRecibidas;
 }

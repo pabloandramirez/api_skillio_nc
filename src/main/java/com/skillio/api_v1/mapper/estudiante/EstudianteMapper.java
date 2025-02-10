@@ -8,4 +8,6 @@ public interface EstudianteMapper {
     Estudiante estudianteDTOtoEstudiante(EstudianteDTO estudianteDTO);
 
     EstudianteDTO estudianteToEstudianteDTO(Estudiante estudiante);
+
+    EstudianteDTO estudianteToEstudianteValidadoDTO(Estudiante estudiante);
 }

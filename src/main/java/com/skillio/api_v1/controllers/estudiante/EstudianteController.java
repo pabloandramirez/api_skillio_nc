@@ -14,6 +14,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -38,6 +39,20 @@ public class EstudianteController {
             throws NotFoundException {
         log.info("Buscar estudiante por Id");
         return estudianteService.getEstudiantesPorId(idEstudiante).orElseThrow(NotFoundException::new);
+    }
+
+    @GetMapping("/validado/{idEstudiante}")
+    @PreAuthorize("hasAnyRole('ADMIN', 'USUARIO')")
+    public EstudianteDTO getEstudianteValidadoPorId(@RequestHeader("Authorization") String authHeader, @PathVariable(name = "idEstudiante") UUID idEstudiante)
+            throws NotFoundException {
+        log.info("Buscar estudiante por Id");
+        log.info("Validacion del token para control de seguridad");
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            return null;
+        }
+
+        String token = authHeader.substring(7);
+        return estudianteService.getEstudianteValidadoPorId(idEstudiante,token).orElseThrow(NotFoundException::new);
     }
 
     @PostMapping(path = "/nuevoEstudiante")

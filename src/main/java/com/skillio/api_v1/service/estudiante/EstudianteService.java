@@ -19,4 +19,5 @@ public interface EstudianteService {
 
     boolean borrarEstudiante(UUID idEstudiante);
 
+    Optional<EstudianteDTO> getEstudianteValidadoPorId(UUID idEstudiante, String token);
 }

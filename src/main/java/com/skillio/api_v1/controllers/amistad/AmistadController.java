@@ -22,7 +22,7 @@ import java.util.UUID;
 @Slf4j
 public class AmistadController {
 
-    private AmistadService amistadService;
+    private final AmistadService amistadService;
 
     @GetMapping("/")
     @PreAuthorize("hasAnyRole('ADMIN', 'USUARIO')")

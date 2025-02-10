@@ -1,5 +1,6 @@
 package com.skillio.api_v1.service.estudiante.impl;
 
+import com.skillio.api_v1.config.jwt.JwtUtils;
 import com.skillio.api_v1.domain.Estudiante;
 import com.skillio.api_v1.mapper.estudiante.EstudianteMapper;
 import com.skillio.api_v1.models.estudiante.EstudianteDTO;
@@ -9,10 +10,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -22,6 +20,7 @@ public class EstudianteServiceImpl implements EstudianteService {
     private EstudianteRepository estudianteRepository;
     private EstudianteMapper estudianteMapper;
     private PasswordEncoder passwordEncoder;
+    private JwtUtils jwtUtils;
     @Override
     public List<EstudianteDTO> getEstudiantes() {
         List<Estudiante> estudianteList = estudianteRepository.findAll();
@@ -61,6 +60,16 @@ public class EstudianteServiceImpl implements EstudianteService {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public Optional<EstudianteDTO> getEstudianteValidadoPorId(UUID idEstudiante, String token) {
+        Optional<Estudiante> optionalEstudiante = estudianteRepository.findById(idEstudiante);
+        if(optionalEstudiante.isPresent() && Objects.equals(optionalEstudiante.get().getEmail(),
+                jwtUtils.getUsernameFromToken(token))){
+            return optionalEstudiante.map(estudianteMapper::estudianteToEstudianteValidadoDTO);
+        }
+        return Optional.empty();
     }
 
     private void actualizacionEstudiante(Estudiante estudiante, EstudianteDTO estudianteActualizado){

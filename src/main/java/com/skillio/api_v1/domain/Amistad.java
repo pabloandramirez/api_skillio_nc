@@ -36,4 +36,15 @@ public class Amistad {
     private EstadoAmistad estadoAmistad;
 
     private LocalDate fechaAmistad;
+
+    @Override
+    public String toString() {
+        return "Amistad{" +
+                "id=" + id.toString() +
+                ", usuario1=" + usuario1.getNombreCompleto() +
+                ", usuario2=" + usuario2.getNombreCompleto() +
+                ", estadoAmistad=" + estadoAmistad.toString() +
+                ", fechaAmistad=" + fechaAmistad.toString() +
+                '}';
+    }
 }

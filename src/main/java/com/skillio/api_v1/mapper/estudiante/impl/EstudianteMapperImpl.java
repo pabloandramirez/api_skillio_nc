@@ -1,5 +1,6 @@
 package com.skillio.api_v1.mapper.estudiante.impl;
 
+import com.skillio.api_v1.domain.Amistad;
 import com.skillio.api_v1.domain.Estudiante;
 import com.skillio.api_v1.mapper.estudiante.EstudianteMapper;
 import com.skillio.api_v1.models.estudiante.EstudianteDTO;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.stream.Collectors;
 
 @Component
 @AllArgsConstructor
@@ -74,6 +76,52 @@ public class EstudianteMapperImpl implements EstudianteMapper {
 
         if(estudiante.getPreferencias() != null && !estudiante.getPreferencias().isEmpty()){
             builder.preferencias(estudiante.getPreferencias());
+        }
+
+        return builder.build();
+    }
+
+    @Override
+    public EstudianteDTO estudianteToEstudianteValidadoDTO(Estudiante estudiante) {
+        EstudianteDTO.EstudianteDTOBuilder builder = EstudianteDTO.builder()
+                .id(estudiante.getId().toString())
+                .nombreCompleto(estudiante.getNombreCompleto())
+                .email(estudiante.getEmail())
+                .fechaNacimiento(getLocalDate(estudiante.getFechaNacimiento()))
+                .fechaRegistro(getLocalDate(estudiante.getFechaRegistro()));
+
+        if (estudiante.getImagenPerfilUrl() != null && !estudiante.getImagenPerfilUrl().isEmpty()){
+            builder.imagenPerfilUrl(estudiante.getImagenPerfilUrl());
+        }
+
+        if(estudiante.getInstitucion() != null && !estudiante.getInstitucion().isBlank()){
+            builder.institucion(estudiante.getInstitucion());
+        }
+
+        if (estudiante.getEducacion() != null && !estudiante.getEducacion().isBlank()){
+            builder.educacion(estudiante.getEducacion());
+        }
+
+        if(estudiante.getTelefono() != null && !estudiante.getTelefono().toString().isBlank()){
+            builder.telefono(String.valueOf(estudiante.getTelefono()));
+        }
+
+        if(estudiante.getPreferencias() != null && !estudiante.getPreferencias().isEmpty()){
+            builder.preferencias(estudiante.getPreferencias());
+        }
+
+        if (estudiante.getAmistadesEnviadas()!=null && !estudiante.getAmistadesEnviadas().isEmpty()){
+            builder.amistadesEnviadas(estudiante.getAmistadesEnviadas()
+                    .stream()
+                    .map(Amistad::toString)
+                    .collect(Collectors.toList()));
+        }
+
+        if (estudiante.getAmistadesRecibidas()!=null && !estudiante.getAmistadesRecibidas().isEmpty()){
+            builder.amistadesRecibidas(estudiante.getAmistadesRecibidas()
+                    .stream()
+                    .map(Amistad::toString)
+                    .collect(Collectors.toList()));
         }
 
         return builder.build();
